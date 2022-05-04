@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.NumberFormatException: For input string: "l"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:68)
+	at java.base/java.lang.Integer.parseInt(Integer.java:658)
+	at java.base/java.lang.Integer.parseInt(Integer.java:776)
+	at algHV.main(algHV.java:323)

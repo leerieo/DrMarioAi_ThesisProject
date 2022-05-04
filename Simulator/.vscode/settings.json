@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/JenniferLee/Desktop/NINTACO/jfreechart-1.0.1/lib/jfreechart-1.0.1.jar"
+    ]
+}
