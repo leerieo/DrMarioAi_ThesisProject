@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/JenniferLee/Desktop/NINTACO/Nintaco_bin_2020-05-01/Nintaco.jar"
+    ]
+}
