@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/Users/JenniferLee/Desktop/NINTACO/Nintaco_bin_2020-05-01/bot stuff/Simulator/algHV.py", line 304, in <module>
-    level = int(sys.argv[1])
-ValueError: invalid literal for int() with base 10: 'l'

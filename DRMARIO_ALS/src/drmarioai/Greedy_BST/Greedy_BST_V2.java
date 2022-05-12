@@ -238,14 +238,15 @@ public class Greedy_BST_V2 {
             //vertical 
             int color_b = playfield.playfield[row][col] & COLOR_MASK; 
             int color_t = playfield.playfield[row-1][col] & COLOR_MASK; 
+            int tile = getNextItemBeneath(playfield.playfield, row, col); 
 
             //check tiles below the vitamin if the vitamin is 1 color 
             if(row<HEIGHT-1 && color_b==color_t){
-                int tile = getNextItemBeneath(playfield.playfield, row, col); 
+                
                 // if the below tile is the same color +1 
                 if((tile&COLOR_MASK)==color_b){
                     score++; 
-                    // if the right column has a virus +1
+                    // if the column has a virus +1
                     if(playfield.col_has_virus[col]){
                         score++; 
                     }
@@ -263,7 +264,7 @@ public class Greedy_BST_V2 {
                 int match_len = getMatchingSeqLength(playfield.playfield, row, col, color_b);
 
                 // if the bottom vitamin half can clean a sequence +1 
-                if(match_len>=3){
+                if(match_len>=3 && (tile&COLOR_MASK)==color_b){
                     score++; 
                     // if the column has a virus +1
                     if(playfield.col_has_virus[col]){

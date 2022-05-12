@@ -1,6 +1,24 @@
 
 import java.util.*;
 import java.util.ArrayList;
+
+import SOLVERS.Bottle;
+import SOLVERS.Placement;
+import SOLVERS.Playfield;
+import SOLVERS.ALS.GreedyBSTUtils;
+import SOLVERS.ALS.Greedy_BST_V1;
+import SOLVERS.ALS.Greedy_BST_V2;
+import SOLVERS.ALS.Greedy_BST_V3;
+import SOLVERS.ALS.Greedy_BST_V4;
+import SOLVERS.TEST.Evaluator1;
+import SOLVERS.TVO.GreedyUtils;
+import SOLVERS.TVO.GreedyV1;
+import SOLVERS.TVO.GreedyV2;
+import SOLVERS.TVO.GreedyV3;
+import SOLVERS.TVO.GreedyV4;
+import SOLVERS.TVO.GreedyV5;
+import SOLVERS.TVO.ItemColumn;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -21,8 +39,6 @@ public class level {
 
     private static int[][] playfield;
     public static int[][] vitamins; 
-
-    private static StringBuilder sb = new StringBuilder();
     
     private static int num_viruses; 
 
@@ -299,9 +315,9 @@ public class level {
         p[row][col+1] = Bottle.EMPTY_TILE; 
     }
 
-    public static void process_level(int seed, int l, Boolean print_b, Boolean record){
+    public static void process_level(int seed, int l, Boolean print_b, Boolean record, String category, int ver, StringBuilder sb){
 
-        int print_c = 10;
+        int print_c = 50;
 
         generate_level(seed, l);
 
@@ -311,8 +327,6 @@ public class level {
             sb.append(Integer.toString(l));
             sb.append(','); 
         }
- 
-
 
         int vitamin_idx = 1; 
         int vitamin_counter = 1; 
@@ -334,14 +348,60 @@ public class level {
             int vita_l = vitamin[0]; 
             int vita_r = vitamin[1]; 
 
-            
+            Placement loc = null; 
 
-            // Placement loc = v1_evaluator(vita_l, vita_r); 
+            if(category.equals("TVO")){
 
-            Placement loc = v4_TVO_evaluator(vita_l, vita_r); 
+                switch(ver){
+                    case 1:
+                        loc = v1_TVO_evaluator(vita_l, vita_r); 
+                        break;
+                    case 2:
+                        loc = v2_TVO_evaluator(vita_l, vita_r); 
+                        break;
+                    case 3:
+                        loc = v3_TVO_evaluator(vita_l, vita_r); 
+                        break;
+                    case 4: 
+                        loc = v4_TVO_evaluator(vita_l, vita_r); 
+                        break;
+                    case 5: 
+                        loc = v5_TVO_evaluator(vita_l, vita_r); 
+                        break;
+                    default: 
+                        System.out.println("Invalid Version");
+                        return; 
+                }
+
+            }else if(category.equals("ALS")){
+
+                switch(ver){
+                    case 1:
+                        loc = v1_evaluator(vita_l, vita_r); 
+                        break;
+                    case 2:
+                        loc = v2_evaluator(vita_l, vita_r); 
+                        break;
+                    case 3:
+                        loc = v3_evaluator(vita_l, vita_r); 
+                        break;
+                    case 4: 
+                        loc = v4_evaluator(vita_l, vita_r); 
+                        break;
+                    default: 
+                        System.out.println("Invalid Version");
+                        return; 
+                }
+
+            }else{
+                System.out.println("Invalid Category");
+                return; 
+            }
 
             if(loc == null){
+                System.out.println("Null Location Returned");
                 print_bottle();
+                return; 
             }
 
             placeVitamin(vita_l, vita_r, loc, playfield,true);
@@ -361,8 +421,6 @@ public class level {
                 print_c--; 
             }
             
-    
-        
             vitamin_idx++; 
         }
 
@@ -602,75 +660,6 @@ public class level {
         return best; 
     }
 
-
-    public static void main (String[] args){
-        //Skip over seeds 00 00, 00 01, 01 00, and 01 01.
-
-     
-        sb.append("seed"); 
-        sb.append(','); 
-        sb.append("level"); 
-        sb.append(','); 
-        sb.append("vitamins_used"); 
-        sb.append(','); 
-        sb.append("finished"); 
-        sb.append(','); 
-        sb.append("num_ver_clears"); 
-        sb.append(','); 
-        sb.append("num_hor_clears"); 
-        sb.append(','); 
-        sb.append("num_vita_placed_top_row"); 
-        sb.append('\n');
-
-
-
-        // // // REMEBER TO CHANGE THESE TO 256!!!
-        for(int i=0; i<256; i++){
-            System.out.println("i: "+i);
-            for(int j=0; j<256; j++){
-                if(j%20==0){
-                    System.out.println("    j: "+j);
-                }
-   
-                if(i<=1 && j<=1){
-                    continue; 
-                }else{ 
-                    int seed = 256*i + j; 
-                    for(int l=0; l<=20; l++){
-                        // System.out.println("level: "+l);
-
-                        process_level(seed, l, false, true);
-                    
-                        // System.out.println("level: "+l);
-                        // if(j==8 && l==12){
-                        //     process_level(seed, l, true);
-                        // }else{
-                        //     process_level(seed, l, false);
-                        // }
-                    }
-                }
-
-            }
-        }
-        System.out.println("END!");
-
-        try (PrintWriter writer = new PrintWriter("test_tvo_v4.csv")) {
-            writer.write(sb.toString());
-            System.out.println("Written!");
-        }catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-
-        int seed = 256*0x99 + 0x99; 
-
-        int l = 20; 
-
-        process_level(seed, l,true,false);
-        // System.out.println("END!");
-        
-    }
 
 
 }

@@ -1,6 +1,8 @@
 
 import java.util.Random;
 
+import SOLVERS.Bottle;
+
 public class algHV{
 
     private static Random r = new Random();
