@@ -9,7 +9,7 @@ public class test {
 
         
         // 2 parameters category + version
-        String category;
+        String category = "TVO";
         int ver; 
         String csv_name;
         if(args.length>=2){
@@ -35,38 +35,43 @@ public class test {
         sb.append("num_vita_placed_top_row"); 
         sb.append('\n');
 
-        int counter = 0; 
+        // int counter = 0; 
 
-        // // // REMEMBER TO CHANGE THESE TO 256!!!
-        for(int i=0; i<256; i++){
-            System.out.println("i: "+i);
-            for(int j=0; j<256; j++){
-                if(j%20==0){
-                    System.out.println("    j: "+j);
-                }
-                //Skip over seeds 00 00, 00 01, 01 00, and 01 01.
-                if(i<=1 && j<=1){
-                    continue; 
-                }else{ 
-                    int seed = 256*i + j; 
-                    for(int l=0; l<=20; l++){
-                        level.process_level(seed, l, false, true,category,ver,sb);
-                        counter++; 
-                    }
-                }
+        // // // // REMEMBER TO CHANGE THESE TO 256!!!
+        // for(int i=0; i<256; i++){
+        //     System.out.println("i: "+i);
+        //     for(int j=0; j<256; j++){
+        //         if(j%20==0){
+        //             System.out.println("    j: "+j);
+        //         }
+        //         //Skip over seeds 00 00, 00 01, 01 00, and 01 01.
+        //         if(i<=1 && j<=1){
+        //             continue; 
+        //         }else{ 
+        //             int seed = 256*i + j; 
+        //             for(int l=0; l<=20; l++){
+        //                 level.process_level(seed, l, false, true,category,ver,sb);
+        //                 counter++; 
+        //             }
+        //         }
 
-            }
-        }
-        System.out.println("END!: "+counter);
+        //     }
+        // }
+        // System.out.println("END!: "+counter);
 
-        try (PrintWriter writer = new PrintWriter(csv_name)) {
-            writer.write(sb.toString());
-            System.out.println("Written!");
-        }catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+        // try (PrintWriter writer = new PrintWriter(csv_name)) {
+        //     writer.write(sb.toString());
+        //     System.out.println("Written!");
+        // }catch (FileNotFoundException e) {
+        //     System.out.println(e.getMessage());
+        // }
 
-        System.out.println("WRITTEN!");
+        // System.out.println("WRITTEN!");
+
+
+        int seed = 256*0x99 + 0x99; 
+        int l = 15; 
+        level.process_level(seed, l, true, false,category,ver,sb);
 
         // int seed = 256*0x99 + 0x99; 
 

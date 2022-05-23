@@ -317,7 +317,7 @@ public class level {
 
     public static void process_level(int seed, int l, Boolean print_b, Boolean record, String category, int ver, StringBuilder sb){
 
-        int print_c = 50;
+        int print_c = 20;
 
         generate_level(seed, l);
 
@@ -409,12 +409,12 @@ public class level {
             
 
             if(print_b && print_c>0){
-                System.out.println("num viruses: "+num_viruses);
-                System.out.println("row: "+loc.getRow()+", col: "+loc.getCol()+", orien: "+loc.getOrientation());
-                System.out.println("pill_num: "+vitamin_counter);
-                System.out.println("num_ver_clears: "+num_ver_clears);
-                System.out.println("num_hor_clears: "+num_hor_clears);
-                System.out.println("num_vita_placed_top_row: "+num_vita_placed_top_row); 
+                // System.out.println("num viruses: "+num_viruses);
+                // System.out.println("row: "+loc.getRow()+", col: "+loc.getCol()+", orien: "+loc.getOrientation());
+                // System.out.println("pill_num: "+vitamin_counter);
+                // System.out.println("num_ver_clears: "+num_ver_clears);
+                // System.out.println("num_hor_clears: "+num_hor_clears);
+                // System.out.println("num_vita_placed_top_row: "+num_vita_placed_top_row); 
 
                 print_bottle();
                 

@@ -68,8 +68,8 @@ public class DrMarioAI {
   private void renderFinished(int ver) {
 
     // Writes to the seed
-    api.writeCPU(Address.SEED_1, 0x00);
-    api.writeCPU(Address.SEED_2, 0x02);
+    api.writeCPU(Address.SEED_1, 0x99);
+    api.writeCPU(Address.SEED_2, 0x99);
 
 
     // Check the current game mode 
