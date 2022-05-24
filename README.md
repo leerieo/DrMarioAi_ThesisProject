@@ -1,5 +1,10 @@
 # DrMarioAi_ThesisProject
 
+## Nintaco
+
+This project requires downloading the [Nintaco Software](https://nintaco.com/). 
+For information on running Nintaco, see their [FAQ](https://nintaco.com/faq.html).
+
 ## Compiling the java code into a JAR file 
 
 In order to run the code written in the src/drmarioai file, we must first bundle it into a jar file. 
